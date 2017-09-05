@@ -1,0 +1,115 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "workspace",
+            "otherEntityName": "workspace",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "initLayer",
+            "otherEntityName": "layer",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "layers",
+            "otherEntityName": "layer",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "webs",
+            "otherEntityName": "web",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "regions",
+            "otherEntityName": "region",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "layerDisplayMode",
+            "fieldType": "LayerDisplayMode",
+            "fieldValues": "SINGLE,MULTIPLE"
+        },
+        {
+            "fieldName": "tileURL",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "longitude",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "latitude",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "altitude",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "zoomLevel",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "rotation",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "fixRotation",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "showMap",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "showLayer",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "showCenterAsPOI",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "icon",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "createTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updateTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "deleteTime",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20170904040946",
+    "entityTableName": "map",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "angularJSSuffix": "lbs"
+}

@@ -1,0 +1,51 @@
+
+<div *ngIf="workspace">
+    <h2><span jhiTranslate="lbStestApp.workspace.detail.title">Workspace</span> {{workspace.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbStestApp.workspace.name">Name</span></dt>
+        <dd>
+            <span>{{workspace.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.workspace.token">Token</span></dt>
+        <dd>
+            <span>{{workspace.token}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.workspace.createTime">Create Time</span></dt>
+        <dd>
+            <span>{{workspace.createTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.workspace.updateTime">Update Time</span></dt>
+        <dd>
+            <span>{{workspace.updateTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.workspace.deleteTime">Delete Time</span></dt>
+        <dd>
+            <span>{{workspace.deleteTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.workspace.initMap">Init Map</span></dt>
+        <dd>
+            <div *ngIf="workspace.initMapId">
+                <a [routerLink]="['/map-lbs', workspace.initMapId]">{{workspace.initMapId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.workspace.owner">Owner</span></dt>
+        <dd>
+            {{workspace.ownerId}}
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'workspace-lbs/'+ workspace.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

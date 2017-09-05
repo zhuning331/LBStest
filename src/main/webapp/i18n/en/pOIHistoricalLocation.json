@@ -1,0 +1,29 @@
+{
+    "lbStestApp": {
+        "pOIHistoricalLocation" : {
+            "home": {
+                "title": "POI Historical Locations",
+                "createLabel": "Create a new POI Historical Location",
+                "createOrEditLabel": "Create or edit a POI Historical Location",
+                "search": "Search for POI Historical Location"
+            },
+            "created": "A new POI Historical Location is created with identifier {{ param }}",
+            "updated": "A POI Historical Location is updated with identifier {{ param }}",
+            "deleted": "A POI Historical Location is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete POI Historical Location {{ id }}?"
+            },
+            "detail": {
+                "title": "POI Historical Location"
+            },
+            "longitude": "Longitude",
+            "latitude": "Latitude",
+            "altitude": "Altitude",
+            "bearing": "Bearing",
+            "speed": "Speed",
+            "time": "Time",
+            "type": "Type",
+            "poi": "Poi"
+        }
+    }
+}

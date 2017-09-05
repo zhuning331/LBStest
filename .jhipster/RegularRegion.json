@@ -1,0 +1,59 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "region",
+            "otherEntityName": "region",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sides",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "centerLongitude",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "centerLatitude",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "altitude",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "cornerLongitude",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "cornerLatitude",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "createTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updateTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "deleteTime",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20170904040956",
+    "entityTableName": "regular_region",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "angularJSSuffix": "lbs"
+}

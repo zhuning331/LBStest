@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040942_added_entity_ServiceConfig.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040943_added_entity_WorkspaceConfig.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040944_added_entity_Language.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040945_added_entity_Workspace.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040946_added_entity_Map.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040947_added_entity_Layer.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040948_added_entity_POI.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040949_added_entity_POIType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040950_added_entity_POIHistoricalLocation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040951_added_entity_Node.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040952_added_entity_Edge.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040953_added_entity_Region.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040954_added_entity_RegionType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040955_added_entity_PolygonRegion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040956_added_entity_RegularRegion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040957_added_entity_Web.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040958_added_entity_WebType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040959_added_entity_EdgeType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904041000_added_entity_BindingPOI.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904041001_added_entity_LocationUpdate.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20170904040943_added_entity_constraints_WorkspaceConfig.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040945_added_entity_constraints_Workspace.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040946_added_entity_constraints_Map.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040948_added_entity_constraints_POI.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040949_added_entity_constraints_POIType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040950_added_entity_constraints_POIHistoricalLocation.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040951_added_entity_constraints_Node.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040952_added_entity_constraints_Edge.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040953_added_entity_constraints_Region.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040954_added_entity_constraints_RegionType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040955_added_entity_constraints_PolygonRegion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040956_added_entity_constraints_RegularRegion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040957_added_entity_constraints_Web.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904040958_added_entity_constraints_WebType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20170904041000_added_entity_constraints_BindingPOI.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+</databaseChangeLog>

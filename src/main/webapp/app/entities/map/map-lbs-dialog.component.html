@@ -1,0 +1,157 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myMapLabel" jhiTranslate="lbStestApp.map.home.createOrEditLabel">Create or edit a Map</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!map.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="map.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.map.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="map.name"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.map.layerDisplayMode" for="field_layerDisplayMode">Layer Display Mode</label>
+            <select class="form-control" name="layerDisplayMode" [(ngModel)]="map.layerDisplayMode" id="field_layerDisplayMode" >
+                <option value="SINGLE">{{'lbStestApp.LayerDisplayMode.SINGLE' | translate}}</option>
+                <option value="MULTIPLE">{{'lbStestApp.LayerDisplayMode.MULTIPLE' | translate}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.map.tileURL" for="field_tileURL">Tile URL</label>
+            <input type="text" class="form-control" name="tileURL" id="field_tileURL"
+                [(ngModel)]="map.tileURL"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.map.longitude" for="field_longitude">Longitude</label>
+            <input type="number" class="form-control" name="longitude" id="field_longitude"
+                [(ngModel)]="map.longitude"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.map.latitude" for="field_latitude">Latitude</label>
+            <input type="number" class="form-control" name="latitude" id="field_latitude"
+                [(ngModel)]="map.latitude"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.map.altitude" for="field_altitude">Altitude</label>
+            <input type="number" class="form-control" name="altitude" id="field_altitude"
+                [(ngModel)]="map.altitude"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.map.zoomLevel" for="field_zoomLevel">Zoom Level</label>
+            <input type="number" class="form-control" name="zoomLevel" id="field_zoomLevel"
+                [(ngModel)]="map.zoomLevel"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.map.rotation" for="field_rotation">Rotation</label>
+            <input type="number" class="form-control" name="rotation" id="field_rotation"
+                [(ngModel)]="map.rotation"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.map.fixRotation" for="field_fixRotation">Fix Rotation</label>
+            <input type="checkbox" class="form-control" name="fixRotation" id="field_fixRotation"
+                [(ngModel)]="map.fixRotation"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.map.showMap" for="field_showMap">Show Map</label>
+            <input type="checkbox" class="form-control" name="showMap" id="field_showMap"
+                [(ngModel)]="map.showMap"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.map.showLayer" for="field_showLayer">Show Layer</label>
+            <input type="checkbox" class="form-control" name="showLayer" id="field_showLayer"
+                [(ngModel)]="map.showLayer"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.map.showCenterAsPOI" for="field_showCenterAsPOI">Show Center As POI</label>
+            <input type="checkbox" class="form-control" name="showCenterAsPOI" id="field_showCenterAsPOI"
+                [(ngModel)]="map.showCenterAsPOI"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.map.icon" for="field_icon">Icon</label>
+            <div>
+                <img [src]="'data:' + map.iconContentType + ';base64,' + map.icon" style="max-height: 100px;" *ngIf="map.icon" alt="map image"/>
+                <div *ngIf="map.icon" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{map.iconContentType}}, {{byteSize(map.icon)}}</span>
+                    <button type="button" (click)="clearInputImage('icon', 'iconContentType', 'fileImage')" class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_icon" (change)="setFileData($event, map, 'icon', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+            </div>
+            <input type="hidden" class="form-control" name="icon" id="field_icon"
+                [(ngModel)]="map.icon"  />
+            <input type="hidden" class="form-control" name="iconContentType" id="field_iconContentType"
+                [(ngModel)]="map.iconContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.map.createTime" for="field_createTime">Create Time</label>
+            <div class="d-flex">
+                <input id="field_createTime" type="datetime-local" class="form-control" name="createTime" [(ngModel)]="map.createTime"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.map.updateTime" for="field_updateTime">Update Time</label>
+            <div class="d-flex">
+                <input id="field_updateTime" type="datetime-local" class="form-control" name="updateTime" [(ngModel)]="map.updateTime"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.map.deleteTime" for="field_deleteTime">Delete Time</label>
+            <div class="d-flex">
+                <input id="field_deleteTime" type="datetime-local" class="form-control" name="deleteTime" [(ngModel)]="map.deleteTime"
+                  />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.map.workspace" for="field_workspace">Workspace</label>
+            <select class="form-control" id="field_workspace" name="workspace" [(ngModel)]="map.workspaceId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="workspaceOption.id" *ngFor="let workspaceOption of workspaces; trackBy: trackWorkspaceById">{{workspaceOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.map.initLayer" for="field_initLayer">Init Layer</label>
+            <select class="form-control" id="field_initLayer" name="initLayer" [(ngModel)]="map.initLayerId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="layerOption.id" *ngFor="let layerOption of layers; trackBy: trackLayerById">{{layerOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="lbStestApp.map.layers" for="field_layers">Layers</label>
+            <select class="form-control" id="field_layers" multiple name="layers" [(ngModel)]="map.layers">
+                <option [ngValue]="getSelected(map.layers, layerOption)" *ngFor="let layerOption of layers; trackBy: trackLayerById">{{layerOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="lbStestApp.map.webs" for="field_webs">Webs</label>
+            <select class="form-control" id="field_webs" multiple name="webs" [(ngModel)]="map.webs">
+                <option [ngValue]="getSelected(map.webs, webOption)" *ngFor="let webOption of webs; trackBy: trackWebById">{{webOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="lbStestApp.map.regions" for="field_regions">Regions</label>
+            <select class="form-control" id="field_regions" multiple name="regions" [(ngModel)]="map.regions">
+                <option [ngValue]="getSelected(map.regions, regionOption)" *ngFor="let regionOption of regions; trackBy: trackRegionById">{{regionOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

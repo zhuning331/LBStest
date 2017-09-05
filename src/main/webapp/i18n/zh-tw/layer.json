@@ -1,0 +1,39 @@
+{
+    "lbStestApp": {
+        "layer" : {
+            "home": {
+                "title": "Layers",
+                "createLabel": "建立一筆新的 Layer",
+                "createOrEditLabel": "建立或編輯 Layer",
+                "search": "搜尋 Layer"
+            },
+            "created": "新的 Layer 建立成功，識別碼為 {{ param }}",
+            "updated": "識別碼為 {{ param }} 的 Layer 更新成功",
+            "deleted": "識別碼為 {{ param }} 的 Layer 刪除成功",
+            "delete": {
+                "question": "您確定要刪除 Layer {{ id }} 嗎?"
+            },
+            "detail": {
+                "title": "Layer"
+            },
+            "priority": "Priority",
+            "name": "Name",
+            "image": "Image",
+            "opacity": "Opacity",
+            "rotation": "Rotation",
+            "centerX": "Center X",
+            "centerY": "Center Y",
+            "scaleX": "Scale X",
+            "scaleY": "Scale Y",
+            "cropXMin": "Crop X Min",
+            "cropYMin": "Crop Y Min",
+            "cropXMax": "Crop X Max",
+            "centerLongitude": "Center Longitude",
+            "centerLatitude": "Center Latitude",
+            "altitude": "Altitude",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "deleteTime": "Delete Time"
+        }
+    }
+}

@@ -1,0 +1,80 @@
+
+<div *ngIf="regionType">
+    <h2><span jhiTranslate="lbStestApp.regionType.detail.title">Region Type</span> {{regionType.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbStestApp.regionType.type">Type</span></dt>
+        <dd>
+            <span>{{regionType.type}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.regionType.showRegion">Show Region</span></dt>
+        <dd>
+            <span>{{regionType.showRegion}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.regionType.borderColor">Border Color</span></dt>
+        <dd>
+            <span>{{regionType.borderColor}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.regionType.backgroundImage">Background Image</span></dt>
+        <dd>
+            <div *ngIf="regionType.backgroundImage">
+                <a (click)="openFile(regionType.backgroundImageContentType, regionType.backgroundImage)">
+                    <img [src]="'data:' + regionType.backgroundImageContentType + ';base64,' + regionType.backgroundImage" style="max-width: 100%;" alt="regionType image"/>
+                </a>
+                {{regionType.backgroundImageContentType}}, {{byteSize(regionType.backgroundImage)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.regionType.backgroundImageScale">Background Image Scale</span></dt>
+        <dd>
+            <span>{{regionType.backgroundImageScale}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.regionType.backgroundImageColor">Background Image Color</span></dt>
+        <dd>
+            <span>{{regionType.backgroundImageColor}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.regionType.backgroundColor">Background Color</span></dt>
+        <dd>
+            <span>{{regionType.backgroundColor}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.regionType.layerId">Layer Id</span></dt>
+        <dd>
+            <span>{{regionType.layerId}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.regionType.priority">Priority</span></dt>
+        <dd>
+            <span>{{regionType.priority}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.regionType.createTime">Create Time</span></dt>
+        <dd>
+            <span>{{regionType.createTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.regionType.updateTime">Update Time</span></dt>
+        <dd>
+            <span>{{regionType.updateTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.regionType.deleteTime">Delete Time</span></dt>
+        <dd>
+            <span>{{regionType.deleteTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.regionType.workspace">Workspace</span></dt>
+        <dd>
+            <div *ngIf="regionType.workspaceId">
+                <a [routerLink]="['/workspace-lbs', regionType.workspaceId]">{{regionType.workspaceId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'region-type-lbs/'+ regionType.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,71 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPOIHistoricalLocationLabel" jhiTranslate="lbStestApp.pOIHistoricalLocation.home.createOrEditLabel">Create or edit a POI Historical Location</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!pOIHistoricalLocation.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="pOIHistoricalLocation.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOIHistoricalLocation.longitude" for="field_longitude">Longitude</label>
+            <input type="number" class="form-control" name="longitude" id="field_longitude"
+                [(ngModel)]="pOIHistoricalLocation.longitude"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOIHistoricalLocation.latitude" for="field_latitude">Latitude</label>
+            <input type="number" class="form-control" name="latitude" id="field_latitude"
+                [(ngModel)]="pOIHistoricalLocation.latitude"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOIHistoricalLocation.altitude" for="field_altitude">Altitude</label>
+            <input type="number" class="form-control" name="altitude" id="field_altitude"
+                [(ngModel)]="pOIHistoricalLocation.altitude"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOIHistoricalLocation.bearing" for="field_bearing">Bearing</label>
+            <input type="number" class="form-control" name="bearing" id="field_bearing"
+                [(ngModel)]="pOIHistoricalLocation.bearing"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOIHistoricalLocation.speed" for="field_speed">Speed</label>
+            <input type="number" class="form-control" name="speed" id="field_speed"
+                [(ngModel)]="pOIHistoricalLocation.speed"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOIHistoricalLocation.time" for="field_time">Time</label>
+            <div class="d-flex">
+                <input id="field_time" type="datetime-local" class="form-control" name="time" [(ngModel)]="pOIHistoricalLocation.time"
+                  />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOIHistoricalLocation.type" for="field_type">Type</label>
+            <select class="form-control" id="field_type" name="type" [(ngModel)]="pOIHistoricalLocation.typeId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="pOITypeOption.id" *ngFor="let pOITypeOption of poitypes; trackBy: trackPOITypeById">{{pOITypeOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOIHistoricalLocation.poi" for="field_poi">Poi</label>
+            <select class="form-control" id="field_poi" name="poi" [(ngModel)]="pOIHistoricalLocation.poiId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="pOIOption.id" *ngFor="let pOIOption of pois; trackBy: trackPOIById">{{pOIOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

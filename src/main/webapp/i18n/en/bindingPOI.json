@@ -1,0 +1,27 @@
+{
+    "lbStestApp": {
+        "bindingPOI" : {
+            "home": {
+                "title": "Binding POIS",
+                "createLabel": "Create a new Binding POI",
+                "createOrEditLabel": "Create or edit a Binding POI",
+                "search": "Search for Binding POI"
+            },
+            "created": "A new Binding POI is created with identifier {{ param }}",
+            "updated": "A Binding POI is updated with identifier {{ param }}",
+            "deleted": "A Binding POI is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Binding POI {{ id }}?"
+            },
+            "detail": {
+                "title": "Binding POI"
+            },
+            "bindingType": "Binding Type",
+            "bindingKey": "Binding Key",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "deleteTime": "Delete Time",
+            "poi": "Poi"
+        }
+    }
+}

@@ -1,0 +1,76 @@
+
+<div *ngIf="pOI">
+    <h2><span jhiTranslate="lbStestApp.pOI.detail.title">POI</span> {{pOI.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbStestApp.pOI.name">Name</span></dt>
+        <dd>
+            <span>{{pOI.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOI.longitude">Longitude</span></dt>
+        <dd>
+            <span>{{pOI.longitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOI.latitude">Latitude</span></dt>
+        <dd>
+            <span>{{pOI.latitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOI.altitude">Altitude</span></dt>
+        <dd>
+            <span>{{pOI.altitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOI.bearing">Bearing</span></dt>
+        <dd>
+            <span>{{pOI.bearing}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOI.icon">Icon</span></dt>
+        <dd>
+            <div *ngIf="pOI.icon">
+                <a (click)="openFile(pOI.iconContentType, pOI.icon)">
+                    <img [src]="'data:' + pOI.iconContentType + ';base64,' + pOI.icon" style="max-width: 100%;" alt="pOI image"/>
+                </a>
+                {{pOI.iconContentType}}, {{byteSize(pOI.icon)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOI.speed">Speed</span></dt>
+        <dd>
+            <span>{{pOI.speed}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOI.profile">Profile</span></dt>
+        <dd>
+            <span>{{pOI.profile}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOI.createTime">Create Time</span></dt>
+        <dd>
+            <span>{{pOI.createTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOI.updateTime">Update Time</span></dt>
+        <dd>
+            <span>{{pOI.updateTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOI.deleteTime">Delete Time</span></dt>
+        <dd>
+            <span>{{pOI.deleteTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOI.types">Types</span></dt>
+        <dd>
+            <span *ngFor="let types of pOI.types; let last = last">
+                <a [routerLink]="['/poi-type-lbs', types?.id ]">{{types.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'poi-lbs/'+ pOI.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

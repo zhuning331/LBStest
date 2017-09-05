@@ -1,0 +1,63 @@
+
+<div *ngIf="node">
+    <h2><span jhiTranslate="lbStestApp.node.detail.title">Node</span> {{node.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbStestApp.node.order">Order</span></dt>
+        <dd>
+            <span>{{node.order}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.node.longitude">Longitude</span></dt>
+        <dd>
+            <span>{{node.longitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.node.latitude">Latitude</span></dt>
+        <dd>
+            <span>{{node.latitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.node.altitude">Altitude</span></dt>
+        <dd>
+            <span>{{node.altitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.node.poiId">Poi Id</span></dt>
+        <dd>
+            <span>{{node.poiId}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.node.layerId">Layer Id</span></dt>
+        <dd>
+            <span>{{node.layerId}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.node.createTime">Create Time</span></dt>
+        <dd>
+            <span>{{node.createTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.node.updateTime">Update Time</span></dt>
+        <dd>
+            <span>{{node.updateTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.node.deleteTime">Delete Time</span></dt>
+        <dd>
+            <span>{{node.deleteTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.node.polygonRegion">Polygon Region</span></dt>
+        <dd>
+            <div *ngIf="node.polygonRegionId">
+                <a [routerLink]="['/polygon-region-lbs', node.polygonRegionId]">{{node.polygonRegionId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'node-lbs/'+ node.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

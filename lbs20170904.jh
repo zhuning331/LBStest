@@ -1,0 +1,287 @@
+entity ServiceConfig {
+	key String,
+	value String,
+    createTime ZonedDateTime,
+	updateTime ZonedDateTime,
+	deleteTime ZonedDateTime
+}
+
+// situation manager admin username
+// situation manager admin password
+
+entity WorkspaceConfig {
+	key String,
+	value String,
+    createTime ZonedDateTime,
+	updateTime ZonedDateTime,
+	deleteTime ZonedDateTime
+}
+
+// default map focus latitude
+// default map focus longitude
+
+entity Language {
+	workspaceToken String,
+	type String,
+	identity String,
+	value String,
+	target String,
+	code String
+}
+
+entity Workspace {
+	name String,
+	token String,    
+	createTime ZonedDateTime,
+	updateTime ZonedDateTime,
+	deleteTime ZonedDateTime
+}
+
+entity Map {
+	name String,
+    layerDisplayMode LayerDisplayMode,
+	tileURL String,
+	longitude Double,
+	latitude Double,
+	altitude Double,
+    zoomLevel Integer,
+	rotation Double,
+    fixRotation Boolean,
+	showMap Boolean,
+	showLayer Boolean,
+    showCenterAsPOI Boolean,  // for feature extension 
+    icon ImageBlob,	          // for feature extension
+	createTime ZonedDateTime,
+	updateTime ZonedDateTime,
+	deleteTime ZonedDateTime
+}
+
+entity Layer {
+	priority Integer,
+	name String,
+	image ImageBlob,
+	opacity Double,
+	rotation Double,
+	centerX Double,
+	centerY Double,
+	scaleX Double,
+	scaleY Double,
+	cropXMin Double,
+	cropYMin Double,
+	cropXMax Double,
+	cropYMin Double,
+	centerLongitude Double,
+	centerLatitude Double,
+	altitude Double,
+	createTime ZonedDateTime,
+	updateTime ZonedDateTime,
+	deleteTime ZonedDateTime
+}
+
+entity POI {
+	name String,
+	longitude Double,
+	latitude Double,
+	altitude Double,
+	bearing Double,
+    icon ImageBlob,
+    speed Double,    
+	profile String,
+	createTime ZonedDateTime,
+	updateTime ZonedDateTime,
+	deleteTime ZonedDateTime
+}
+
+entity POIType {
+	priority Integer,
+    type String,
+	icon ImageBlob,
+    showPOI Boolean,
+    layerId Long,
+	createTime ZonedDateTime,
+	updateTime ZonedDateTime,
+	deleteTime ZonedDateTime
+}
+
+entity POIHistoricalLocation {
+	longitude Double,
+	latitude Double,
+	altitude Double,
+	bearing Double,
+	speed Double,    
+	time ZonedDateTime
+}
+
+entity Node {
+	order Integer,
+	longitude Double,
+	latitude Double,
+	altitude Double,
+	poiId Long,
+    layerId Long,
+	createTime ZonedDateTime,
+	updateTime ZonedDateTime,
+	deleteTime ZonedDateTime
+}
+
+entity Edge {
+	order Integer,
+	createTime ZonedDateTime,
+	updateTime ZonedDateTime,
+	deleteTime ZonedDateTime
+}
+
+entity Region {
+	name String,
+	createTime ZonedDateTime,
+	updateTime ZonedDateTime,
+	deleteTime ZonedDateTime
+}
+
+entity RegionType {
+	type String,
+    showRegion Boolean,	    
+	borderColor String,
+	backgroundImage ImageBlob,
+	backgroundImageScale Double,
+	backgroundImageColor String,
+	backgroundColor String,
+    layerId Long,
+    priority Integer,
+	createTime ZonedDateTime,
+	updateTime ZonedDateTime,
+	deleteTime ZonedDateTime
+}
+
+entity PolygonRegion {
+	name String,
+    createTime ZonedDateTime,
+	updateTime ZonedDateTime,
+	deleteTime ZonedDateTime
+}
+
+entity RegularRegion {
+	name String,
+	sides Integer,
+	centerLongitude Double,
+	centerLatitude Double,
+    altitude Double,
+	cornerLongitude Double,
+	cornerLatitude Double,
+    createTime ZonedDateTime,
+	updateTime ZonedDateTime,
+	deleteTime ZonedDateTime
+}
+
+entity Web {
+	name String,
+    createTime ZonedDateTime,
+	updateTime ZonedDateTime,
+	deleteTime ZonedDateTime
+}
+
+entity WebType {	
+	type String,
+    showWeb Boolean,
+	color String,
+    width Double,    
+    layerId Long,
+    priority Integer,    
+    createTime ZonedDateTime,
+	updateTime ZonedDateTime,
+	deleteTime ZonedDateTime
+}
+
+entity EdgeType {
+	priority Integer,
+	type String,
+	color String,
+    width Double,
+    createTime ZonedDateTime,
+	updateTime ZonedDateTime,
+	deleteTime ZonedDateTime
+}
+
+entity BindingPOI {
+	bindingType String,
+    bindingKey String,
+    createTime ZonedDateTime,
+	updateTime ZonedDateTime,
+	deleteTime ZonedDateTime
+}
+
+entity LocationUpdate {
+	longitude Double,
+	latitude Double,
+	altitude Double,
+	bearing Double,
+    speed Double,
+    layerId Long,
+    time ZonedDateTime
+}
+
+enum LayerDisplayMode {
+	SINGLE, MULTIPLE
+}
+
+relationship OneToMany {
+	Workspace{configs} to WorkspaceConfig,
+	Workspace{maps} to Map,
+	Region{polygonRegions} to PolygonRegion,
+	Region{regularRegions} to RegularRegion,	
+	PolygonRegion{nodes} to Node,	
+	Web{edges} to Edge
+}
+
+relationship ManyToOne {
+	Workspace{initMap} to Map,	
+	Map{initLayer} to Layer,
+	Edge{from} to Node,
+	Edge{to} to Node,	
+	BindingPOI{poi} to POI,
+	POIHistoricalLocation{type} to POIType,
+	POIHistoricalLocation{poi} to POI,	
+	Workspace{owner} to User,	
+	POIType{workspace} to Workspace,
+	RegionType{workspace} to Workspace,
+	WebType{workspace} to Workspace
+}
+
+relationship ManyToMany {
+	Map{layers} to Layer,
+	Map{webs} to Web,
+	Map{regions} to Region,
+	Region{types} to RegionType,
+	Web{types} to WebType,	
+	POI{types} to POIType,	
+	Edge{types} to EdgeType	
+}
+
+// Set pagination options
+paginate ServiceConfig with pagination
+paginate WorkspaceConfig with pagination
+paginate Language with pagination
+paginate Workspace with pagination
+paginate Map with pagination
+paginate Layer with pagination
+paginate Region with pagination
+paginate RegionType with pagination
+paginate POI with pagination
+paginate POIType with pagination
+paginate BindingPOI with pagination
+paginate Web with pagination
+paginate WebType with pagination
+paginate PolygonRegion with pagination
+paginate RegularRegion with pagination
+paginate POIHistoricalLocation with pagination
+paginate Node with pagination
+paginate Edge with pagination
+paginate EdgeType with pagination
+paginate LocationUpdate with pagination
+
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+// Set an angular suffix
+angularSuffix * with lbs

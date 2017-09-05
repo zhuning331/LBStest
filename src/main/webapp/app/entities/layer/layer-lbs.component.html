@@ -1,0 +1,116 @@
+<div>
+    <h2>
+        <span jhiTranslate="lbStestApp.layer.home.title">Layers</span>
+        <button class="btn btn-primary float-right jh-create-entity create-layer-lbs" [routerLink]="['/', { outlets: { popup: ['layer-lbs-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="lbStestApp.layer.home.createLabel">
+            Create new Layer
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'lbStestApp.layer.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="layers">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="priority"><span jhiTranslate="lbStestApp.layer.priority">Priority</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span jhiTranslate="lbStestApp.layer.name">Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="image"><span jhiTranslate="lbStestApp.layer.image">Image</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="opacity"><span jhiTranslate="lbStestApp.layer.opacity">Opacity</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rotation"><span jhiTranslate="lbStestApp.layer.rotation">Rotation</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="centerX"><span jhiTranslate="lbStestApp.layer.centerX">Center X</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="centerY"><span jhiTranslate="lbStestApp.layer.centerY">Center Y</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="scaleX"><span jhiTranslate="lbStestApp.layer.scaleX">Scale X</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="scaleY"><span jhiTranslate="lbStestApp.layer.scaleY">Scale Y</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="cropXMin"><span jhiTranslate="lbStestApp.layer.cropXMin">Crop X Min</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="cropYMin"><span jhiTranslate="lbStestApp.layer.cropYMin">Crop Y Min</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="cropXMax"><span jhiTranslate="lbStestApp.layer.cropXMax">Crop X Max</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="centerLongitude"><span jhiTranslate="lbStestApp.layer.centerLongitude">Center Longitude</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="centerLatitude"><span jhiTranslate="lbStestApp.layer.centerLatitude">Center Latitude</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="altitude"><span jhiTranslate="lbStestApp.layer.altitude">Altitude</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="createTime"><span jhiTranslate="lbStestApp.layer.createTime">Create Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="updateTime"><span jhiTranslate="lbStestApp.layer.updateTime">Update Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="deleteTime"><span jhiTranslate="lbStestApp.layer.deleteTime">Delete Time</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let layer of layers ;trackBy: trackId">
+                <td><a [routerLink]="['../layer-lbs', layer.id ]">{{layer.id}}</a></td>
+                <td>{{layer.priority}}</td>
+                <td>{{layer.name}}</td>
+                <td>
+                    <a *ngIf="layer.image" (click)="openFile(layer.imageContentType, layer.image)">
+                        <img [src]="'data:' + layer.imageContentType + ';base64,' + layer.image" style="max-height: 30px;" alt="layer image"/>
+                    </a>
+                    <span *ngIf="layer.image">{{layer.imageContentType}}, {{byteSize(layer.image)}}</span>
+                </td>
+                <td>{{layer.opacity}}</td>
+                <td>{{layer.rotation}}</td>
+                <td>{{layer.centerX}}</td>
+                <td>{{layer.centerY}}</td>
+                <td>{{layer.scaleX}}</td>
+                <td>{{layer.scaleY}}</td>
+                <td>{{layer.cropXMin}}</td>
+                <td>{{layer.cropYMin}}</td>
+                <td>{{layer.cropXMax}}</td>
+                <td>{{layer.centerLongitude}}</td>
+                <td>{{layer.centerLatitude}}</td>
+                <td>{{layer.altitude}}</td>
+                <td>{{layer.createTime | date:'medium'}}</td>
+                <td>{{layer.updateTime | date:'medium'}}</td>
+                <td>{{layer.deleteTime | date:'medium'}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../layer-lbs', layer.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'layer-lbs/'+ layer.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'layer-lbs/'+ layer.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="layers && layers.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

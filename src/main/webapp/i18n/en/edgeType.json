@@ -1,0 +1,28 @@
+{
+    "lbStestApp": {
+        "edgeType" : {
+            "home": {
+                "title": "Edge Types",
+                "createLabel": "Create a new Edge Type",
+                "createOrEditLabel": "Create or edit a Edge Type",
+                "search": "Search for Edge Type"
+            },
+            "created": "A new Edge Type is created with identifier {{ param }}",
+            "updated": "A Edge Type is updated with identifier {{ param }}",
+            "deleted": "A Edge Type is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Edge Type {{ id }}?"
+            },
+            "detail": {
+                "title": "Edge Type"
+            },
+            "priority": "Priority",
+            "type": "Type",
+            "color": "Color",
+            "width": "Width",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "deleteTime": "Delete Time"
+        }
+    }
+}

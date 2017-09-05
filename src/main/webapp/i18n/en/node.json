@@ -1,0 +1,31 @@
+{
+    "lbStestApp": {
+        "node" : {
+            "home": {
+                "title": "Nodes",
+                "createLabel": "Create a new Node",
+                "createOrEditLabel": "Create or edit a Node",
+                "search": "Search for Node"
+            },
+            "created": "A new Node is created with identifier {{ param }}",
+            "updated": "A Node is updated with identifier {{ param }}",
+            "deleted": "A Node is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Node {{ id }}?"
+            },
+            "detail": {
+                "title": "Node"
+            },
+            "order": "Order",
+            "longitude": "Longitude",
+            "latitude": "Latitude",
+            "altitude": "Altitude",
+            "poiId": "Poi Id",
+            "layerId": "Layer Id",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "deleteTime": "Delete Time",
+            "polygonRegion": "Polygon Region"
+        }
+    }
+}

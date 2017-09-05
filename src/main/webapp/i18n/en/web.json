@@ -1,0 +1,27 @@
+{
+    "lbStestApp": {
+        "web" : {
+            "home": {
+                "title": "Webs",
+                "createLabel": "Create a new Web",
+                "createOrEditLabel": "Create or edit a Web",
+                "search": "Search for Web"
+            },
+            "created": "A new Web is created with identifier {{ param }}",
+            "updated": "A Web is updated with identifier {{ param }}",
+            "deleted": "A Web is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Web {{ id }}?"
+            },
+            "detail": {
+                "title": "Web"
+            },
+            "name": "Name",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "deleteTime": "Delete Time",
+            "edges": "Edges",
+            "types": "Types"
+        }
+    }
+}

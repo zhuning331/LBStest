@@ -1,0 +1,28 @@
+{
+    "lbStestApp": {
+        "locationUpdate" : {
+            "home": {
+                "title": "Location Updates",
+                "createLabel": "建立一筆新的 Location Update",
+                "createOrEditLabel": "建立或編輯 Location Update",
+                "search": "搜尋 Location Update"
+            },
+            "created": "新的 Location Update 建立成功，識別碼為 {{ param }}",
+            "updated": "識別碼為 {{ param }} 的 Location Update 更新成功",
+            "deleted": "識別碼為 {{ param }} 的 Location Update 刪除成功",
+            "delete": {
+                "question": "您確定要刪除 Location Update {{ id }} 嗎?"
+            },
+            "detail": {
+                "title": "Location Update"
+            },
+            "longitude": "Longitude",
+            "latitude": "Latitude",
+            "altitude": "Altitude",
+            "bearing": "Bearing",
+            "speed": "Speed",
+            "layerId": "Layer Id",
+            "time": "Time"
+        }
+    }
+}

@@ -1,0 +1,33 @@
+{
+    "lbStestApp": {
+        "pOI" : {
+            "home": {
+                "title": "POIS",
+                "createLabel": "建立一筆新的 POI",
+                "createOrEditLabel": "建立或編輯 POI",
+                "search": "搜尋 POI"
+            },
+            "created": "新的 POI 建立成功，識別碼為 {{ param }}",
+            "updated": "識別碼為 {{ param }} 的 POI 更新成功",
+            "deleted": "識別碼為 {{ param }} 的 POI 刪除成功",
+            "delete": {
+                "question": "您確定要刪除 POI {{ id }} 嗎?"
+            },
+            "detail": {
+                "title": "POI"
+            },
+            "name": "Name",
+            "longitude": "Longitude",
+            "latitude": "Latitude",
+            "altitude": "Altitude",
+            "bearing": "Bearing",
+            "icon": "Icon",
+            "speed": "Speed",
+            "profile": "Profile",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "deleteTime": "Delete Time",
+            "types": "Types"
+        }
+    }
+}

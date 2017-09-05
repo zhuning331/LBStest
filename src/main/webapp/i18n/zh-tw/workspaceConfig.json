@@ -1,0 +1,27 @@
+{
+    "lbStestApp": {
+        "workspaceConfig" : {
+            "home": {
+                "title": "Workspace Configs",
+                "createLabel": "建立一筆新的 Workspace Config",
+                "createOrEditLabel": "建立或編輯 Workspace Config",
+                "search": "搜尋 Workspace Config"
+            },
+            "created": "新的 Workspace Config 建立成功，識別碼為 {{ param }}",
+            "updated": "識別碼為 {{ param }} 的 Workspace Config 更新成功",
+            "deleted": "識別碼為 {{ param }} 的 Workspace Config 刪除成功",
+            "delete": {
+                "question": "您確定要刪除 Workspace Config {{ id }} 嗎?"
+            },
+            "detail": {
+                "title": "Workspace Config"
+            },
+            "key": "Key",
+            "value": "Value",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "deleteTime": "Delete Time",
+            "workspace": "Workspace"
+        }
+    }
+}

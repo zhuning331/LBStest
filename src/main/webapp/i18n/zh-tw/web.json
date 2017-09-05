@@ -1,0 +1,27 @@
+{
+    "lbStestApp": {
+        "web" : {
+            "home": {
+                "title": "Webs",
+                "createLabel": "建立一筆新的 Web",
+                "createOrEditLabel": "建立或編輯 Web",
+                "search": "搜尋 Web"
+            },
+            "created": "新的 Web 建立成功，識別碼為 {{ param }}",
+            "updated": "識別碼為 {{ param }} 的 Web 更新成功",
+            "deleted": "識別碼為 {{ param }} 的 Web 刪除成功",
+            "delete": {
+                "question": "您確定要刪除 Web {{ id }} 嗎?"
+            },
+            "detail": {
+                "title": "Web"
+            },
+            "name": "Name",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "deleteTime": "Delete Time",
+            "edges": "Edges",
+            "types": "Types"
+        }
+    }
+}

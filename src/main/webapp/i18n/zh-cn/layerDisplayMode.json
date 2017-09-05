@@ -1,0 +1,9 @@
+{
+    "lbStestApp": {
+        "LayerDisplayMode" : {
+            "null": "",
+            "SINGLE": "SINGLE",
+            "MULTIPLE": "MULTIPLE"
+        }
+    }
+}

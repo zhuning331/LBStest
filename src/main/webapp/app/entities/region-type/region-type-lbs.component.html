@@ -1,0 +1,110 @@
+<div>
+    <h2>
+        <span jhiTranslate="lbStestApp.regionType.home.title">Region Types</span>
+        <button class="btn btn-primary float-right jh-create-entity create-region-type-lbs" [routerLink]="['/', { outlets: { popup: ['region-type-lbs-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="lbStestApp.regionType.home.createLabel">
+            Create new Region Type
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'lbStestApp.regionType.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="regionTypes">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="type"><span jhiTranslate="lbStestApp.regionType.type">Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="showRegion"><span jhiTranslate="lbStestApp.regionType.showRegion">Show Region</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="borderColor"><span jhiTranslate="lbStestApp.regionType.borderColor">Border Color</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="backgroundImage"><span jhiTranslate="lbStestApp.regionType.backgroundImage">Background Image</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="backgroundImageScale"><span jhiTranslate="lbStestApp.regionType.backgroundImageScale">Background Image Scale</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="backgroundImageColor"><span jhiTranslate="lbStestApp.regionType.backgroundImageColor">Background Image Color</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="backgroundColor"><span jhiTranslate="lbStestApp.regionType.backgroundColor">Background Color</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="layerId"><span jhiTranslate="lbStestApp.regionType.layerId">Layer Id</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="priority"><span jhiTranslate="lbStestApp.regionType.priority">Priority</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="createTime"><span jhiTranslate="lbStestApp.regionType.createTime">Create Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="updateTime"><span jhiTranslate="lbStestApp.regionType.updateTime">Update Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="deleteTime"><span jhiTranslate="lbStestApp.regionType.deleteTime">Delete Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="workspaceId"><span jhiTranslate="lbStestApp.regionType.workspace">Workspace</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let regionType of regionTypes ;trackBy: trackId">
+                <td><a [routerLink]="['../region-type-lbs', regionType.id ]">{{regionType.id}}</a></td>
+                <td>{{regionType.type}}</td>
+                <td>{{regionType.showRegion}}</td>
+                <td>{{regionType.borderColor}}</td>
+                <td>
+                    <a *ngIf="regionType.backgroundImage" (click)="openFile(regionType.backgroundImageContentType, regionType.backgroundImage)">
+                        <img [src]="'data:' + regionType.backgroundImageContentType + ';base64,' + regionType.backgroundImage" style="max-height: 30px;" alt="regionType image"/>
+                    </a>
+                    <span *ngIf="regionType.backgroundImage">{{regionType.backgroundImageContentType}}, {{byteSize(regionType.backgroundImage)}}</span>
+                </td>
+                <td>{{regionType.backgroundImageScale}}</td>
+                <td>{{regionType.backgroundImageColor}}</td>
+                <td>{{regionType.backgroundColor}}</td>
+                <td>{{regionType.layerId}}</td>
+                <td>{{regionType.priority}}</td>
+                <td>{{regionType.createTime | date:'medium'}}</td>
+                <td>{{regionType.updateTime | date:'medium'}}</td>
+                <td>{{regionType.deleteTime | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="regionType.workspaceId">
+                        <a [routerLink]="['../workspace-lbs', regionType.workspaceId  ]" >{{regionType.workspaceId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../region-type-lbs', regionType.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'region-type-lbs/'+ regionType.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'region-type-lbs/'+ regionType.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="regionTypes && regionTypes.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

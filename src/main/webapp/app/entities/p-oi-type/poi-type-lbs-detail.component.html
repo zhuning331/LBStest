@@ -1,0 +1,64 @@
+
+<div *ngIf="pOIType">
+    <h2><span jhiTranslate="lbStestApp.pOIType.detail.title">POI Type</span> {{pOIType.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbStestApp.pOIType.priority">Priority</span></dt>
+        <dd>
+            <span>{{pOIType.priority}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOIType.type">Type</span></dt>
+        <dd>
+            <span>{{pOIType.type}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOIType.icon">Icon</span></dt>
+        <dd>
+            <div *ngIf="pOIType.icon">
+                <a (click)="openFile(pOIType.iconContentType, pOIType.icon)">
+                    <img [src]="'data:' + pOIType.iconContentType + ';base64,' + pOIType.icon" style="max-width: 100%;" alt="pOIType image"/>
+                </a>
+                {{pOIType.iconContentType}}, {{byteSize(pOIType.icon)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOIType.showPOI">Show POI</span></dt>
+        <dd>
+            <span>{{pOIType.showPOI}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOIType.layerId">Layer Id</span></dt>
+        <dd>
+            <span>{{pOIType.layerId}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOIType.createTime">Create Time</span></dt>
+        <dd>
+            <span>{{pOIType.createTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOIType.updateTime">Update Time</span></dt>
+        <dd>
+            <span>{{pOIType.updateTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOIType.deleteTime">Delete Time</span></dt>
+        <dd>
+            <span>{{pOIType.deleteTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOIType.workspace">Workspace</span></dt>
+        <dd>
+            <div *ngIf="pOIType.workspaceId">
+                <a [routerLink]="['/workspace-lbs', pOIType.workspaceId]">{{pOIType.workspaceId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'poi-type-lbs/'+ pOIType.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

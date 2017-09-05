@@ -1,0 +1,27 @@
+{
+    "lbStestApp": {
+        "workspaceConfig" : {
+            "home": {
+                "title": "Workspace Configs",
+                "createLabel": "Create a new Workspace Config",
+                "createOrEditLabel": "Create or edit a Workspace Config",
+                "search": "Search for Workspace Config"
+            },
+            "created": "A new Workspace Config is created with identifier {{ param }}",
+            "updated": "A Workspace Config is updated with identifier {{ param }}",
+            "deleted": "A Workspace Config is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Workspace Config {{ id }}?"
+            },
+            "detail": {
+                "title": "Workspace Config"
+            },
+            "key": "Key",
+            "value": "Value",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "deleteTime": "Delete Time",
+            "workspace": "Workspace"
+        }
+    }
+}

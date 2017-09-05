@@ -1,0 +1,45 @@
+
+<div *ngIf="language">
+    <h2><span jhiTranslate="lbStestApp.language.detail.title">Language</span> {{language.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbStestApp.language.workspaceToken">Workspace Token</span></dt>
+        <dd>
+            <span>{{language.workspaceToken}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.language.type">Type</span></dt>
+        <dd>
+            <span>{{language.type}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.language.identity">Identity</span></dt>
+        <dd>
+            <span>{{language.identity}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.language.value">Value</span></dt>
+        <dd>
+            <span>{{language.value}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.language.target">Target</span></dt>
+        <dd>
+            <span>{{language.target}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.language.code">Code</span></dt>
+        <dd>
+            <span>{{language.code}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'language-lbs/'+ language.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,41 @@
+
+<div *ngIf="serviceConfig">
+    <h2><span jhiTranslate="lbStestApp.serviceConfig.detail.title">Service Config</span> {{serviceConfig.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbStestApp.serviceConfig.key">Key</span></dt>
+        <dd>
+            <span>{{serviceConfig.key}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.serviceConfig.value">Value</span></dt>
+        <dd>
+            <span>{{serviceConfig.value}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.serviceConfig.createTime">Create Time</span></dt>
+        <dd>
+            <span>{{serviceConfig.createTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.serviceConfig.updateTime">Update Time</span></dt>
+        <dd>
+            <span>{{serviceConfig.updateTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.serviceConfig.deleteTime">Delete Time</span></dt>
+        <dd>
+            <span>{{serviceConfig.deleteTime | date:'medium'}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'service-config-lbs/'+ serviceConfig.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

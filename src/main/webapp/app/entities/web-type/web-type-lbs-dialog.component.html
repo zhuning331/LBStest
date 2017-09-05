@@ -1,0 +1,83 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myWebTypeLabel" jhiTranslate="lbStestApp.webType.home.createOrEditLabel">Create or edit a Web Type</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!webType.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="webType.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.webType.type" for="field_type">Type</label>
+            <input type="text" class="form-control" name="type" id="field_type"
+                [(ngModel)]="webType.type"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.webType.showWeb" for="field_showWeb">Show Web</label>
+            <input type="checkbox" class="form-control" name="showWeb" id="field_showWeb"
+                [(ngModel)]="webType.showWeb"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.webType.color" for="field_color">Color</label>
+            <input type="text" class="form-control" name="color" id="field_color"
+                [(ngModel)]="webType.color"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.webType.width" for="field_width">Width</label>
+            <input type="number" class="form-control" name="width" id="field_width"
+                [(ngModel)]="webType.width"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.webType.layerId" for="field_layerId">Layer Id</label>
+            <input type="number" class="form-control" name="layerId" id="field_layerId"
+                [(ngModel)]="webType.layerId"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.webType.priority" for="field_priority">Priority</label>
+            <input type="number" class="form-control" name="priority" id="field_priority"
+                [(ngModel)]="webType.priority"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.webType.createTime" for="field_createTime">Create Time</label>
+            <div class="d-flex">
+                <input id="field_createTime" type="datetime-local" class="form-control" name="createTime" [(ngModel)]="webType.createTime"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.webType.updateTime" for="field_updateTime">Update Time</label>
+            <div class="d-flex">
+                <input id="field_updateTime" type="datetime-local" class="form-control" name="updateTime" [(ngModel)]="webType.updateTime"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.webType.deleteTime" for="field_deleteTime">Delete Time</label>
+            <div class="d-flex">
+                <input id="field_deleteTime" type="datetime-local" class="form-control" name="deleteTime" [(ngModel)]="webType.deleteTime"
+                  />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.webType.workspace" for="field_workspace">Workspace</label>
+            <select class="form-control" id="field_workspace" name="workspace" [(ngModel)]="webType.workspaceId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="workspaceOption.id" *ngFor="let workspaceOption of workspaces; trackBy: trackWorkspaceById">{{workspaceOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

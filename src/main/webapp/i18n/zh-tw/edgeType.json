@@ -1,0 +1,28 @@
+{
+    "lbStestApp": {
+        "edgeType" : {
+            "home": {
+                "title": "Edge Types",
+                "createLabel": "建立一筆新的 Edge Type",
+                "createOrEditLabel": "建立或編輯 Edge Type",
+                "search": "搜尋 Edge Type"
+            },
+            "created": "新的 Edge Type 建立成功，識別碼為 {{ param }}",
+            "updated": "識別碼為 {{ param }} 的 Edge Type 更新成功",
+            "deleted": "識別碼為 {{ param }} 的 Edge Type 刪除成功",
+            "delete": {
+                "question": "您確定要刪除 Edge Type {{ id }} 嗎?"
+            },
+            "detail": {
+                "title": "Edge Type"
+            },
+            "priority": "Priority",
+            "type": "Type",
+            "color": "Color",
+            "width": "Width",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "deleteTime": "Delete Time"
+        }
+    }
+}

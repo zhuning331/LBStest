@@ -1,0 +1,90 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPOITypeLabel" jhiTranslate="lbStestApp.pOIType.home.createOrEditLabel">Create or edit a POI Type</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!pOIType.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="pOIType.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOIType.priority" for="field_priority">Priority</label>
+            <input type="number" class="form-control" name="priority" id="field_priority"
+                [(ngModel)]="pOIType.priority"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOIType.type" for="field_type">Type</label>
+            <input type="text" class="form-control" name="type" id="field_type"
+                [(ngModel)]="pOIType.type"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOIType.icon" for="field_icon">Icon</label>
+            <div>
+                <img [src]="'data:' + pOIType.iconContentType + ';base64,' + pOIType.icon" style="max-height: 100px;" *ngIf="pOIType.icon" alt="pOIType image"/>
+                <div *ngIf="pOIType.icon" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{pOIType.iconContentType}}, {{byteSize(pOIType.icon)}}</span>
+                    <button type="button" (click)="clearInputImage('icon', 'iconContentType', 'fileImage')" class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_icon" (change)="setFileData($event, pOIType, 'icon', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+            </div>
+            <input type="hidden" class="form-control" name="icon" id="field_icon"
+                [(ngModel)]="pOIType.icon"  />
+            <input type="hidden" class="form-control" name="iconContentType" id="field_iconContentType"
+                [(ngModel)]="pOIType.iconContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOIType.showPOI" for="field_showPOI">Show POI</label>
+            <input type="checkbox" class="form-control" name="showPOI" id="field_showPOI"
+                [(ngModel)]="pOIType.showPOI"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOIType.layerId" for="field_layerId">Layer Id</label>
+            <input type="number" class="form-control" name="layerId" id="field_layerId"
+                [(ngModel)]="pOIType.layerId"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOIType.createTime" for="field_createTime">Create Time</label>
+            <div class="d-flex">
+                <input id="field_createTime" type="datetime-local" class="form-control" name="createTime" [(ngModel)]="pOIType.createTime"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOIType.updateTime" for="field_updateTime">Update Time</label>
+            <div class="d-flex">
+                <input id="field_updateTime" type="datetime-local" class="form-control" name="updateTime" [(ngModel)]="pOIType.updateTime"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOIType.deleteTime" for="field_deleteTime">Delete Time</label>
+            <div class="d-flex">
+                <input id="field_deleteTime" type="datetime-local" class="form-control" name="deleteTime" [(ngModel)]="pOIType.deleteTime"
+                  />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOIType.workspace" for="field_workspace">Workspace</label>
+            <select class="form-control" id="field_workspace" name="workspace" [(ngModel)]="pOIType.workspaceId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="workspaceOption.id" *ngFor="let workspaceOption of workspaces; trackBy: trackWorkspaceById">{{workspaceOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,28 @@
+{
+    "lbStestApp": {
+        "locationUpdate" : {
+            "home": {
+                "title": "Location Updates",
+                "createLabel": "Create a new Location Update",
+                "createOrEditLabel": "Create or edit a Location Update",
+                "search": "Search for Location Update"
+            },
+            "created": "A new Location Update is created with identifier {{ param }}",
+            "updated": "A Location Update is updated with identifier {{ param }}",
+            "deleted": "A Location Update is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Location Update {{ id }}?"
+            },
+            "detail": {
+                "title": "Location Update"
+            },
+            "longitude": "Longitude",
+            "latitude": "Latitude",
+            "altitude": "Altitude",
+            "bearing": "Bearing",
+            "speed": "Speed",
+            "layerId": "Layer Id",
+            "time": "Time"
+        }
+    }
+}

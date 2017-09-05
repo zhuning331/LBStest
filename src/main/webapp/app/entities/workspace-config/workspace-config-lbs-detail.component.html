@@ -1,0 +1,47 @@
+
+<div *ngIf="workspaceConfig">
+    <h2><span jhiTranslate="lbStestApp.workspaceConfig.detail.title">Workspace Config</span> {{workspaceConfig.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbStestApp.workspaceConfig.key">Key</span></dt>
+        <dd>
+            <span>{{workspaceConfig.key}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.workspaceConfig.value">Value</span></dt>
+        <dd>
+            <span>{{workspaceConfig.value}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.workspaceConfig.createTime">Create Time</span></dt>
+        <dd>
+            <span>{{workspaceConfig.createTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.workspaceConfig.updateTime">Update Time</span></dt>
+        <dd>
+            <span>{{workspaceConfig.updateTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.workspaceConfig.deleteTime">Delete Time</span></dt>
+        <dd>
+            <span>{{workspaceConfig.deleteTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.workspaceConfig.workspace">Workspace</span></dt>
+        <dd>
+            <div *ngIf="workspaceConfig.workspaceId">
+                <a [routerLink]="['/workspace-lbs', workspaceConfig.workspaceId]">{{workspaceConfig.workspaceId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'workspace-config-lbs/'+ workspaceConfig.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

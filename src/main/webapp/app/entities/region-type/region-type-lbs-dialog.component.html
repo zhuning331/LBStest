@@ -1,0 +1,110 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myRegionTypeLabel" jhiTranslate="lbStestApp.regionType.home.createOrEditLabel">Create or edit a Region Type</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!regionType.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="regionType.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.regionType.type" for="field_type">Type</label>
+            <input type="text" class="form-control" name="type" id="field_type"
+                [(ngModel)]="regionType.type"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.regionType.showRegion" for="field_showRegion">Show Region</label>
+            <input type="checkbox" class="form-control" name="showRegion" id="field_showRegion"
+                [(ngModel)]="regionType.showRegion"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.regionType.borderColor" for="field_borderColor">Border Color</label>
+            <input type="text" class="form-control" name="borderColor" id="field_borderColor"
+                [(ngModel)]="regionType.borderColor"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.regionType.backgroundImage" for="field_backgroundImage">Background Image</label>
+            <div>
+                <img [src]="'data:' + regionType.backgroundImageContentType + ';base64,' + regionType.backgroundImage" style="max-height: 100px;" *ngIf="regionType.backgroundImage" alt="regionType image"/>
+                <div *ngIf="regionType.backgroundImage" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{regionType.backgroundImageContentType}}, {{byteSize(regionType.backgroundImage)}}</span>
+                    <button type="button" (click)="clearInputImage('backgroundImage', 'backgroundImageContentType', 'fileImage')" class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_backgroundImage" (change)="setFileData($event, regionType, 'backgroundImage', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+            </div>
+            <input type="hidden" class="form-control" name="backgroundImage" id="field_backgroundImage"
+                [(ngModel)]="regionType.backgroundImage"  />
+            <input type="hidden" class="form-control" name="backgroundImageContentType" id="field_backgroundImageContentType"
+                [(ngModel)]="regionType.backgroundImageContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.regionType.backgroundImageScale" for="field_backgroundImageScale">Background Image Scale</label>
+            <input type="number" class="form-control" name="backgroundImageScale" id="field_backgroundImageScale"
+                [(ngModel)]="regionType.backgroundImageScale"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.regionType.backgroundImageColor" for="field_backgroundImageColor">Background Image Color</label>
+            <input type="text" class="form-control" name="backgroundImageColor" id="field_backgroundImageColor"
+                [(ngModel)]="regionType.backgroundImageColor"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.regionType.backgroundColor" for="field_backgroundColor">Background Color</label>
+            <input type="text" class="form-control" name="backgroundColor" id="field_backgroundColor"
+                [(ngModel)]="regionType.backgroundColor"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.regionType.layerId" for="field_layerId">Layer Id</label>
+            <input type="number" class="form-control" name="layerId" id="field_layerId"
+                [(ngModel)]="regionType.layerId"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.regionType.priority" for="field_priority">Priority</label>
+            <input type="number" class="form-control" name="priority" id="field_priority"
+                [(ngModel)]="regionType.priority"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.regionType.createTime" for="field_createTime">Create Time</label>
+            <div class="d-flex">
+                <input id="field_createTime" type="datetime-local" class="form-control" name="createTime" [(ngModel)]="regionType.createTime"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.regionType.updateTime" for="field_updateTime">Update Time</label>
+            <div class="d-flex">
+                <input id="field_updateTime" type="datetime-local" class="form-control" name="updateTime" [(ngModel)]="regionType.updateTime"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.regionType.deleteTime" for="field_deleteTime">Delete Time</label>
+            <div class="d-flex">
+                <input id="field_deleteTime" type="datetime-local" class="form-control" name="deleteTime" [(ngModel)]="regionType.deleteTime"
+                  />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.regionType.workspace" for="field_workspace">Workspace</label>
+            <select class="form-control" id="field_workspace" name="workspace" [(ngModel)]="regionType.workspaceId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="workspaceOption.id" *ngFor="let workspaceOption of workspaces; trackBy: trackWorkspaceById">{{workspaceOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

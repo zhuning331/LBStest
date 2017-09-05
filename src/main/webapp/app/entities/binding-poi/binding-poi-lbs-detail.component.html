@@ -1,0 +1,47 @@
+
+<div *ngIf="bindingPOI">
+    <h2><span jhiTranslate="lbStestApp.bindingPOI.detail.title">Binding POI</span> {{bindingPOI.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbStestApp.bindingPOI.bindingType">Binding Type</span></dt>
+        <dd>
+            <span>{{bindingPOI.bindingType}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.bindingPOI.bindingKey">Binding Key</span></dt>
+        <dd>
+            <span>{{bindingPOI.bindingKey}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.bindingPOI.createTime">Create Time</span></dt>
+        <dd>
+            <span>{{bindingPOI.createTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.bindingPOI.updateTime">Update Time</span></dt>
+        <dd>
+            <span>{{bindingPOI.updateTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.bindingPOI.deleteTime">Delete Time</span></dt>
+        <dd>
+            <span>{{bindingPOI.deleteTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.bindingPOI.poi">Poi</span></dt>
+        <dd>
+            <div *ngIf="bindingPOI.poiId">
+                <a [routerLink]="['/poi-lbs', bindingPOI.poiId]">{{bindingPOI.poiId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'binding-poi-lbs/'+ bindingPOI.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

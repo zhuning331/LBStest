@@ -1,0 +1,34 @@
+{
+    "lbStestApp": {
+        "regionType" : {
+            "home": {
+                "title": "Region Types",
+                "createLabel": "Create a new Region Type",
+                "createOrEditLabel": "Create or edit a Region Type",
+                "search": "Search for Region Type"
+            },
+            "created": "A new Region Type is created with identifier {{ param }}",
+            "updated": "A Region Type is updated with identifier {{ param }}",
+            "deleted": "A Region Type is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Region Type {{ id }}?"
+            },
+            "detail": {
+                "title": "Region Type"
+            },
+            "type": "Type",
+            "showRegion": "Show Region",
+            "borderColor": "Border Color",
+            "backgroundImage": "Background Image",
+            "backgroundImageScale": "Background Image Scale",
+            "backgroundImageColor": "Background Image Color",
+            "backgroundColor": "Background Color",
+            "layerId": "Layer Id",
+            "priority": "Priority",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "deleteTime": "Delete Time",
+            "workspace": "Workspace"
+        }
+    }
+}

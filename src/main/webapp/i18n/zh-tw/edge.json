@@ -1,0 +1,29 @@
+{
+    "lbStestApp": {
+        "edge" : {
+            "home": {
+                "title": "Edges",
+                "createLabel": "建立一筆新的 Edge",
+                "createOrEditLabel": "建立或編輯 Edge",
+                "search": "搜尋 Edge"
+            },
+            "created": "新的 Edge 建立成功，識別碼為 {{ param }}",
+            "updated": "識別碼為 {{ param }} 的 Edge 更新成功",
+            "deleted": "識別碼為 {{ param }} 的 Edge 刪除成功",
+            "delete": {
+                "question": "您確定要刪除 Edge {{ id }} 嗎?"
+            },
+            "detail": {
+                "title": "Edge"
+            },
+            "order": "Order",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "deleteTime": "Delete Time",
+            "from": "From",
+            "to": "To",
+            "types": "Types",
+            "web": "Web"
+        }
+    }
+}

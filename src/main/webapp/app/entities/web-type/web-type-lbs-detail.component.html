@@ -1,0 +1,63 @@
+
+<div *ngIf="webType">
+    <h2><span jhiTranslate="lbStestApp.webType.detail.title">Web Type</span> {{webType.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbStestApp.webType.type">Type</span></dt>
+        <dd>
+            <span>{{webType.type}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.webType.showWeb">Show Web</span></dt>
+        <dd>
+            <span>{{webType.showWeb}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.webType.color">Color</span></dt>
+        <dd>
+            <span>{{webType.color}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.webType.width">Width</span></dt>
+        <dd>
+            <span>{{webType.width}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.webType.layerId">Layer Id</span></dt>
+        <dd>
+            <span>{{webType.layerId}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.webType.priority">Priority</span></dt>
+        <dd>
+            <span>{{webType.priority}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.webType.createTime">Create Time</span></dt>
+        <dd>
+            <span>{{webType.createTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.webType.updateTime">Update Time</span></dt>
+        <dd>
+            <span>{{webType.updateTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.webType.deleteTime">Delete Time</span></dt>
+        <dd>
+            <span>{{webType.deleteTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.webType.workspace">Workspace</span></dt>
+        <dd>
+            <div *ngIf="webType.workspaceId">
+                <a [routerLink]="['/workspace-lbs', webType.workspaceId]">{{webType.workspaceId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'web-type-lbs/'+ webType.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

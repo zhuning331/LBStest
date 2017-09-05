@@ -1,0 +1,27 @@
+{
+    "lbStestApp": {
+        "polygonRegion" : {
+            "home": {
+                "title": "Polygon Regions",
+                "createLabel": "Create a new Polygon Region",
+                "createOrEditLabel": "Create or edit a Polygon Region",
+                "search": "Search for Polygon Region"
+            },
+            "created": "A new Polygon Region is created with identifier {{ param }}",
+            "updated": "A Polygon Region is updated with identifier {{ param }}",
+            "deleted": "A Polygon Region is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Polygon Region {{ id }}?"
+            },
+            "detail": {
+                "title": "Polygon Region"
+            },
+            "name": "Name",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "deleteTime": "Delete Time",
+            "region": "Region",
+            "nodes": "Nodes"
+        }
+    }
+}

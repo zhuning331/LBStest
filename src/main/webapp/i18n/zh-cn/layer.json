@@ -1,0 +1,39 @@
+{
+    "lbStestApp": {
+        "layer" : {
+            "home": {
+                "title": "Layers",
+                "createLabel": "Create a new Layer",
+                "createOrEditLabel": "Create or edit a Layer",
+                "search": "Search for Layer"
+            },
+            "created": "A new Layer is created with identifier {{ param }}",
+            "updated": "A Layer is updated with identifier {{ param }}",
+            "deleted": "A Layer is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Layer {{ id }}?"
+            },
+            "detail": {
+                "title": "Layer"
+            },
+            "priority": "Priority",
+            "name": "Name",
+            "image": "Image",
+            "opacity": "Opacity",
+            "rotation": "Rotation",
+            "centerX": "Center X",
+            "centerY": "Center Y",
+            "scaleX": "Scale X",
+            "scaleY": "Scale Y",
+            "cropXMin": "Crop X Min",
+            "cropYMin": "Crop Y Min",
+            "cropXMax": "Crop X Max",
+            "centerLongitude": "Center Longitude",
+            "centerLatitude": "Center Latitude",
+            "altitude": "Altitude",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "deleteTime": "Delete Time"
+        }
+    }
+}

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Map.
+    -->
+    <changeSet id="20170904040946-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="workspace_id"
+                                 baseTableName="map"
+                                 constraintName="fk_map_workspace_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="workspace"/>
+
+        <addForeignKeyConstraint baseColumnNames="init_layer_id"
+                                 baseTableName="map"
+                                 constraintName="fk_map_init_layer_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="layer"/>
+
+        <addForeignKeyConstraint baseColumnNames="maps_id"
+                                 baseTableName="map_layers"
+                                 constraintName="fk_map_layers_maps_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="map"/>
+        <addForeignKeyConstraint baseColumnNames="layers_id"
+                                 baseTableName="map_layers"
+                                 constraintName="fk_map_layers_layers_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="layer"/>
+        
+        <addForeignKeyConstraint baseColumnNames="maps_id"
+                                 baseTableName="map_webs"
+                                 constraintName="fk_map_webs_maps_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="map"/>
+        <addForeignKeyConstraint baseColumnNames="webs_id"
+                                 baseTableName="map_webs"
+                                 constraintName="fk_map_webs_webs_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="web"/>
+        
+        <addForeignKeyConstraint baseColumnNames="maps_id"
+                                 baseTableName="map_regions"
+                                 constraintName="fk_map_regions_maps_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="map"/>
+        <addForeignKeyConstraint baseColumnNames="regions_id"
+                                 baseTableName="map_regions"
+                                 constraintName="fk_map_regions_regions_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="region"/>
+        
+    </changeSet>
+</databaseChangeLog>

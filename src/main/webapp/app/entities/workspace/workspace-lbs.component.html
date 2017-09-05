@@ -1,0 +1,95 @@
+<div>
+    <h2>
+        <span jhiTranslate="lbStestApp.workspace.home.title">Workspaces</span>
+        <button class="btn btn-primary float-right jh-create-entity create-workspace-lbs" [routerLink]="['/', { outlets: { popup: ['workspace-lbs-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="lbStestApp.workspace.home.createLabel">
+            Create new Workspace
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'lbStestApp.workspace.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="workspaces">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="name"><span jhiTranslate="lbStestApp.workspace.name">Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="token"><span jhiTranslate="lbStestApp.workspace.token">Token</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="createTime"><span jhiTranslate="lbStestApp.workspace.createTime">Create Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="updateTime"><span jhiTranslate="lbStestApp.workspace.updateTime">Update Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="deleteTime"><span jhiTranslate="lbStestApp.workspace.deleteTime">Delete Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="initMapId"><span jhiTranslate="lbStestApp.workspace.initMap">Init Map</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ownerId"><span jhiTranslate="lbStestApp.workspace.owner">Owner</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let workspace of workspaces ;trackBy: trackId">
+                <td><a [routerLink]="['../workspace-lbs', workspace.id ]">{{workspace.id}}</a></td>
+                <td>{{workspace.name}}</td>
+                <td>{{workspace.token}}</td>
+                <td>{{workspace.createTime | date:'medium'}}</td>
+                <td>{{workspace.updateTime | date:'medium'}}</td>
+                <td>{{workspace.deleteTime | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="workspace.initMapId">
+                        <a [routerLink]="['../map-lbs', workspace.initMapId  ]" >{{workspace.initMapId}}</a>
+                    </div>
+                </td>
+                <td>
+                    {{workspace.ownerId}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../map-lbs' ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'workspace-lbs/'+ workspace.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'workspace-lbs/'+ workspace.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="workspaces && workspaces.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

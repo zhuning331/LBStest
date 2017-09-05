@@ -1,0 +1,32 @@
+{
+    "lbStestApp": {
+        "regularRegion" : {
+            "home": {
+                "title": "Regular Regions",
+                "createLabel": "Create a new Regular Region",
+                "createOrEditLabel": "Create or edit a Regular Region",
+                "search": "Search for Regular Region"
+            },
+            "created": "A new Regular Region is created with identifier {{ param }}",
+            "updated": "A Regular Region is updated with identifier {{ param }}",
+            "deleted": "A Regular Region is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Regular Region {{ id }}?"
+            },
+            "detail": {
+                "title": "Regular Region"
+            },
+            "name": "Name",
+            "sides": "Sides",
+            "centerLongitude": "Center Longitude",
+            "centerLatitude": "Center Latitude",
+            "altitude": "Altitude",
+            "cornerLongitude": "Corner Longitude",
+            "cornerLatitude": "Corner Latitude",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "deleteTime": "Delete Time",
+            "region": "Region"
+        }
+    }
+}

@@ -1,0 +1,85 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "priority",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "image",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "opacity",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "rotation",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "centerX",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "centerY",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "scaleX",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "scaleY",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "cropXMin",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "cropYMin",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "cropXMax",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "centerLongitude",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "centerLatitude",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "altitude",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "createTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updateTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "deleteTime",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20170904040947",
+    "entityTableName": "layer",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "angularJSSuffix": "lbs"
+}

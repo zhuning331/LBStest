@@ -1,0 +1,43 @@
+
+<div *ngIf="region">
+    <h2><span jhiTranslate="lbStestApp.region.detail.title">Region</span> {{region.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbStestApp.region.name">Name</span></dt>
+        <dd>
+            <span>{{region.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.region.createTime">Create Time</span></dt>
+        <dd>
+            <span>{{region.createTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.region.updateTime">Update Time</span></dt>
+        <dd>
+            <span>{{region.updateTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.region.deleteTime">Delete Time</span></dt>
+        <dd>
+            <span>{{region.deleteTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.region.types">Types</span></dt>
+        <dd>
+            <span *ngFor="let types of region.types; let last = last">
+                <a [routerLink]="['/region-type-lbs', types?.id ]">{{types.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'region-lbs/'+ region.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

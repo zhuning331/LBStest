@@ -1,0 +1,102 @@
+<div>
+    <h2>
+        <span jhiTranslate="lbStestApp.pOIType.home.title">POI Types</span>
+        <button class="btn btn-primary float-right jh-create-entity create-poi-type-lbs" [routerLink]="['/', { outlets: { popup: ['poi-type-lbs-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="lbStestApp.pOIType.home.createLabel">
+            Create new POI Type
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'lbStestApp.pOIType.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="pOITypes">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="priority"><span jhiTranslate="lbStestApp.pOIType.priority">Priority</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="type"><span jhiTranslate="lbStestApp.pOIType.type">Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="icon"><span jhiTranslate="lbStestApp.pOIType.icon">Icon</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="showPOI"><span jhiTranslate="lbStestApp.pOIType.showPOI">Show POI</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="layerId"><span jhiTranslate="lbStestApp.pOIType.layerId">Layer Id</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="createTime"><span jhiTranslate="lbStestApp.pOIType.createTime">Create Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="updateTime"><span jhiTranslate="lbStestApp.pOIType.updateTime">Update Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="deleteTime"><span jhiTranslate="lbStestApp.pOIType.deleteTime">Delete Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="workspaceId"><span jhiTranslate="lbStestApp.pOIType.workspace">Workspace</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let pOIType of pOITypes ;trackBy: trackId">
+                <td><a [routerLink]="['../poi-type-lbs', pOIType.id ]">{{pOIType.id}}</a></td>
+                <td>{{pOIType.priority}}</td>
+                <td>{{pOIType.type}}</td>
+                <td>
+                    <a *ngIf="pOIType.icon" (click)="openFile(pOIType.iconContentType, pOIType.icon)">
+                        <img [src]="'data:' + pOIType.iconContentType + ';base64,' + pOIType.icon" style="max-height: 30px;" alt="pOIType image"/>
+                    </a>
+                    <span *ngIf="pOIType.icon">{{pOIType.iconContentType}}, {{byteSize(pOIType.icon)}}</span>
+                </td>
+                <td>{{pOIType.showPOI}}</td>
+                <td>{{pOIType.layerId}}</td>
+                <td>{{pOIType.createTime | date:'medium'}}</td>
+                <td>{{pOIType.updateTime | date:'medium'}}</td>
+                <td>{{pOIType.deleteTime | date:'medium'}}</td>
+                <td>
+                    <div *ngIf="pOIType.workspaceId">
+                        <a [routerLink]="['../workspace-lbs', pOIType.workspaceId  ]" >{{pOIType.workspaceId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../poi-type-lbs', pOIType.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'poi-type-lbs/'+ pOIType.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'poi-type-lbs/'+ pOIType.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <div *ngIf="pOITypes && pOITypes.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page" (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

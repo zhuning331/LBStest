@@ -1,0 +1,126 @@
+
+<div *ngIf="map">
+    <h2><span jhiTranslate="lbStestApp.map.detail.title">Map</span> {{map.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbStestApp.map.name">Name</span></dt>
+        <dd>
+            <span>{{map.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.map.layerDisplayMode">Layer Display Mode</span></dt>
+        <dd>
+            <span jhiTranslate="{{'lbStestApp.LayerDisplayMode.' + map.layerDisplayMode}}">{{map.layerDisplayMode}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.map.tileURL">Tile URL</span></dt>
+        <dd>
+            <span>{{map.tileURL}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.map.longitude">Longitude</span></dt>
+        <dd>
+            <span>{{map.longitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.map.latitude">Latitude</span></dt>
+        <dd>
+            <span>{{map.latitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.map.altitude">Altitude</span></dt>
+        <dd>
+            <span>{{map.altitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.map.zoomLevel">Zoom Level</span></dt>
+        <dd>
+            <span>{{map.zoomLevel}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.map.rotation">Rotation</span></dt>
+        <dd>
+            <span>{{map.rotation}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.map.fixRotation">Fix Rotation</span></dt>
+        <dd>
+            <span>{{map.fixRotation}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.map.showMap">Show Map</span></dt>
+        <dd>
+            <span>{{map.showMap}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.map.showLayer">Show Layer</span></dt>
+        <dd>
+            <span>{{map.showLayer}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.map.showCenterAsPOI">Show Center As POI</span></dt>
+        <dd>
+            <span>{{map.showCenterAsPOI}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.map.icon">Icon</span></dt>
+        <dd>
+            <div *ngIf="map.icon">
+                <a (click)="openFile(map.iconContentType, map.icon)">
+                    <img [src]="'data:' + map.iconContentType + ';base64,' + map.icon" style="max-width: 100%;" alt="map image"/>
+                </a>
+                {{map.iconContentType}}, {{byteSize(map.icon)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.map.createTime">Create Time</span></dt>
+        <dd>
+            <span>{{map.createTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.map.updateTime">Update Time</span></dt>
+        <dd>
+            <span>{{map.updateTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.map.deleteTime">Delete Time</span></dt>
+        <dd>
+            <span>{{map.deleteTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.map.workspace">Workspace</span></dt>
+        <dd>
+            <div *ngIf="map.workspaceId">
+                <a [routerLink]="['/workspace-lbs', map.workspaceId]">{{map.workspaceId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.map.initLayer">Init Layer</span></dt>
+        <dd>
+            <div *ngIf="map.initLayerId">
+                <a [routerLink]="['/layer-lbs', map.initLayerId]">{{map.initLayerId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.map.layers">Layers</span></dt>
+        <dd>
+            <span *ngFor="let layers of map.layers; let last = last">
+                <a [routerLink]="['/layer-lbs', layers?.id ]">{{layers.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.map.webs">Webs</span></dt>
+        <dd>
+            <span *ngFor="let webs of map.webs; let last = last">
+                <a [routerLink]="['/web-lbs', webs?.id ]">{{webs.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.map.regions">Regions</span></dt>
+        <dd>
+            <span *ngFor="let regions of map.regions; let last = last">
+                <a [routerLink]="['/region-lbs', regions?.id ]">{{regions.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+    
+    <button type="submit"
+            (click)="previousState();previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span > Back 2 level</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'map-lbs/'+ map.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

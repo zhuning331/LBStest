@@ -1,0 +1,57 @@
+
+<div *ngIf="pOIHistoricalLocation">
+    <h2><span jhiTranslate="lbStestApp.pOIHistoricalLocation.detail.title">POI Historical Location</span> {{pOIHistoricalLocation.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbStestApp.pOIHistoricalLocation.longitude">Longitude</span></dt>
+        <dd>
+            <span>{{pOIHistoricalLocation.longitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOIHistoricalLocation.latitude">Latitude</span></dt>
+        <dd>
+            <span>{{pOIHistoricalLocation.latitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOIHistoricalLocation.altitude">Altitude</span></dt>
+        <dd>
+            <span>{{pOIHistoricalLocation.altitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOIHistoricalLocation.bearing">Bearing</span></dt>
+        <dd>
+            <span>{{pOIHistoricalLocation.bearing}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOIHistoricalLocation.speed">Speed</span></dt>
+        <dd>
+            <span>{{pOIHistoricalLocation.speed}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOIHistoricalLocation.time">Time</span></dt>
+        <dd>
+            <span>{{pOIHistoricalLocation.time | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOIHistoricalLocation.type">Type</span></dt>
+        <dd>
+            <div *ngIf="pOIHistoricalLocation.typeId">
+                <a [routerLink]="['/poi-type-lbs', pOIHistoricalLocation.typeId]">{{pOIHistoricalLocation.typeId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.pOIHistoricalLocation.poi">Poi</span></dt>
+        <dd>
+            <div *ngIf="pOIHistoricalLocation.poiId">
+                <a [routerLink]="['/poi-lbs', pOIHistoricalLocation.poiId]">{{pOIHistoricalLocation.poiId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'poi-historical-location-lbs/'+ pOIHistoricalLocation.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

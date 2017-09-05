@@ -1,0 +1,26 @@
+{
+    "lbStestApp": {
+        "serviceConfig" : {
+            "home": {
+                "title": "Service Configs",
+                "createLabel": "建立一筆新的 Service Config",
+                "createOrEditLabel": "建立或編輯 Service Config",
+                "search": "搜尋 Service Config"
+            },
+            "created": "新的 Service Config 建立成功，識別碼為 {{ param }}",
+            "updated": "識別碼為 {{ param }} 的 Service Config 更新成功",
+            "deleted": "識別碼為 {{ param }} 的 Service Config 刪除成功",
+            "delete": {
+                "question": "您確定要刪除 Service Config {{ id }} 嗎?"
+            },
+            "detail": {
+                "title": "Service Config"
+            },
+            "key": "Key",
+            "value": "Value",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "deleteTime": "Delete Time"
+        }
+    }
+}

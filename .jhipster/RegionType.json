@@ -1,0 +1,68 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "workspace",
+            "otherEntityName": "workspace",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "type",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "showRegion",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "borderColor",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "backgroundImage",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "backgroundImageScale",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "backgroundImageColor",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "backgroundColor",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "layerId",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "priority",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "createTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "updateTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "deleteTime",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20170904040954",
+    "entityTableName": "region_type",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "angularJSSuffix": "lbs"
+}

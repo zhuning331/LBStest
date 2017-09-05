@@ -1,0 +1,133 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myLayerLabel" jhiTranslate="lbStestApp.layer.home.createOrEditLabel">Create or edit a Layer</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!layer.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="layer.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.layer.priority" for="field_priority">Priority</label>
+            <input type="number" class="form-control" name="priority" id="field_priority"
+                [(ngModel)]="layer.priority"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.layer.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="layer.name"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.layer.image" for="field_image">Image</label>
+            <div>
+                <img [src]="'data:' + layer.imageContentType + ';base64,' + layer.image" style="max-height: 100px;" *ngIf="layer.image" alt="layer image"/>
+                <div *ngIf="layer.image" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{layer.imageContentType}}, {{byteSize(layer.image)}}</span>
+                    <button type="button" (click)="clearInputImage('image', 'imageContentType', 'fileImage')" class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_image" (change)="setFileData($event, layer, 'image', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+            </div>
+            <input type="hidden" class="form-control" name="image" id="field_image"
+                [(ngModel)]="layer.image"  />
+            <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
+                [(ngModel)]="layer.imageContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.layer.opacity" for="field_opacity">Opacity</label>
+            <input type="number" class="form-control" name="opacity" id="field_opacity"
+                [(ngModel)]="layer.opacity"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.layer.rotation" for="field_rotation">Rotation</label>
+            <input type="number" class="form-control" name="rotation" id="field_rotation"
+                [(ngModel)]="layer.rotation"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.layer.centerX" for="field_centerX">Center X</label>
+            <input type="number" class="form-control" name="centerX" id="field_centerX"
+                [(ngModel)]="layer.centerX"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.layer.centerY" for="field_centerY">Center Y</label>
+            <input type="number" class="form-control" name="centerY" id="field_centerY"
+                [(ngModel)]="layer.centerY"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.layer.scaleX" for="field_scaleX">Scale X</label>
+            <input type="number" class="form-control" name="scaleX" id="field_scaleX"
+                [(ngModel)]="layer.scaleX"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.layer.scaleY" for="field_scaleY">Scale Y</label>
+            <input type="number" class="form-control" name="scaleY" id="field_scaleY"
+                [(ngModel)]="layer.scaleY"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.layer.cropXMin" for="field_cropXMin">Crop X Min</label>
+            <input type="number" class="form-control" name="cropXMin" id="field_cropXMin"
+                [(ngModel)]="layer.cropXMin"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.layer.cropYMin" for="field_cropYMin">Crop Y Min</label>
+            <input type="number" class="form-control" name="cropYMin" id="field_cropYMin"
+                [(ngModel)]="layer.cropYMin"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.layer.cropXMax" for="field_cropXMax">Crop X Max</label>
+            <input type="number" class="form-control" name="cropXMax" id="field_cropXMax"
+                [(ngModel)]="layer.cropXMax"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.layer.centerLongitude" for="field_centerLongitude">Center Longitude</label>
+            <input type="number" class="form-control" name="centerLongitude" id="field_centerLongitude"
+                [(ngModel)]="layer.centerLongitude"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.layer.centerLatitude" for="field_centerLatitude">Center Latitude</label>
+            <input type="number" class="form-control" name="centerLatitude" id="field_centerLatitude"
+                [(ngModel)]="layer.centerLatitude"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.layer.altitude" for="field_altitude">Altitude</label>
+            <input type="number" class="form-control" name="altitude" id="field_altitude"
+                [(ngModel)]="layer.altitude"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.layer.createTime" for="field_createTime">Create Time</label>
+            <div class="d-flex">
+                <input id="field_createTime" type="datetime-local" class="form-control" name="createTime" [(ngModel)]="layer.createTime"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.layer.updateTime" for="field_updateTime">Update Time</label>
+            <div class="d-flex">
+                <input id="field_updateTime" type="datetime-local" class="form-control" name="updateTime" [(ngModel)]="layer.updateTime"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.layer.deleteTime" for="field_deleteTime">Delete Time</label>
+            <div class="d-flex">
+                <input id="field_deleteTime" type="datetime-local" class="form-control" name="deleteTime" [(ngModel)]="layer.deleteTime"
+                  />
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

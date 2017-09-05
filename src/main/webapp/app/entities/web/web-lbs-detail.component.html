@@ -1,0 +1,43 @@
+
+<div *ngIf="web">
+    <h2><span jhiTranslate="lbStestApp.web.detail.title">Web</span> {{web.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbStestApp.web.name">Name</span></dt>
+        <dd>
+            <span>{{web.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.web.createTime">Create Time</span></dt>
+        <dd>
+            <span>{{web.createTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.web.updateTime">Update Time</span></dt>
+        <dd>
+            <span>{{web.updateTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.web.deleteTime">Delete Time</span></dt>
+        <dd>
+            <span>{{web.deleteTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.web.types">Types</span></dt>
+        <dd>
+            <span *ngFor="let types of web.types; let last = last">
+                <a [routerLink]="['/web-type-lbs', types?.id ]">{{types.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'web-lbs/'+ web.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

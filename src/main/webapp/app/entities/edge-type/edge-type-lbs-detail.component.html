@@ -1,0 +1,49 @@
+
+<div *ngIf="edgeType">
+    <h2><span jhiTranslate="lbStestApp.edgeType.detail.title">Edge Type</span> {{edgeType.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbStestApp.edgeType.priority">Priority</span></dt>
+        <dd>
+            <span>{{edgeType.priority}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.edgeType.type">Type</span></dt>
+        <dd>
+            <span>{{edgeType.type}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.edgeType.color">Color</span></dt>
+        <dd>
+            <span>{{edgeType.color}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.edgeType.width">Width</span></dt>
+        <dd>
+            <span>{{edgeType.width}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.edgeType.createTime">Create Time</span></dt>
+        <dd>
+            <span>{{edgeType.createTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.edgeType.updateTime">Update Time</span></dt>
+        <dd>
+            <span>{{edgeType.updateTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.edgeType.deleteTime">Delete Time</span></dt>
+        <dd>
+            <span>{{edgeType.deleteTime | date:'medium'}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'edge-type-lbs/'+ edgeType.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

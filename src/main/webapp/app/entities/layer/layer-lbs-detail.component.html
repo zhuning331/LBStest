@@ -1,0 +1,98 @@
+
+<div *ngIf="layer">
+    <h2><span jhiTranslate="lbStestApp.layer.detail.title">Layer</span> {{layer.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbStestApp.layer.priority">Priority</span></dt>
+        <dd>
+            <span>{{layer.priority}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.layer.name">Name</span></dt>
+        <dd>
+            <span>{{layer.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.layer.image">Image</span></dt>
+        <dd>
+            <div *ngIf="layer.image">
+                <a (click)="openFile(layer.imageContentType, layer.image)">
+                    <img [src]="'data:' + layer.imageContentType + ';base64,' + layer.image" style="max-width: 100%;" alt="layer image"/>
+                </a>
+                {{layer.imageContentType}}, {{byteSize(layer.image)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.layer.opacity">Opacity</span></dt>
+        <dd>
+            <span>{{layer.opacity}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.layer.rotation">Rotation</span></dt>
+        <dd>
+            <span>{{layer.rotation}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.layer.centerX">Center X</span></dt>
+        <dd>
+            <span>{{layer.centerX}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.layer.centerY">Center Y</span></dt>
+        <dd>
+            <span>{{layer.centerY}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.layer.scaleX">Scale X</span></dt>
+        <dd>
+            <span>{{layer.scaleX}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.layer.scaleY">Scale Y</span></dt>
+        <dd>
+            <span>{{layer.scaleY}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.layer.cropXMin">Crop X Min</span></dt>
+        <dd>
+            <span>{{layer.cropXMin}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.layer.cropYMin">Crop Y Min</span></dt>
+        <dd>
+            <span>{{layer.cropYMin}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.layer.cropXMax">Crop X Max</span></dt>
+        <dd>
+            <span>{{layer.cropXMax}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.layer.centerLongitude">Center Longitude</span></dt>
+        <dd>
+            <span>{{layer.centerLongitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.layer.centerLatitude">Center Latitude</span></dt>
+        <dd>
+            <span>{{layer.centerLatitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.layer.altitude">Altitude</span></dt>
+        <dd>
+            <span>{{layer.altitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.layer.createTime">Create Time</span></dt>
+        <dd>
+            <span>{{layer.createTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.layer.updateTime">Update Time</span></dt>
+        <dd>
+            <span>{{layer.updateTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.layer.deleteTime">Delete Time</span></dt>
+        <dd>
+            <span>{{layer.deleteTime | date:'medium'}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'layer-lbs/'+ layer.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

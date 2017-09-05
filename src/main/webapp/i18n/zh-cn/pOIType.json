@@ -1,0 +1,30 @@
+{
+    "lbStestApp": {
+        "pOIType" : {
+            "home": {
+                "title": "POI Types",
+                "createLabel": "Create a new POI Type",
+                "createOrEditLabel": "Create or edit a POI Type",
+                "search": "Search for POI Type"
+            },
+            "created": "A new POI Type is created with identifier {{ param }}",
+            "updated": "A POI Type is updated with identifier {{ param }}",
+            "deleted": "A POI Type is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete POI Type {{ id }}?"
+            },
+            "detail": {
+                "title": "POI Type"
+            },
+            "priority": "Priority",
+            "type": "Type",
+            "icon": "Icon",
+            "showPOI": "Show POI",
+            "layerId": "Layer Id",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "deleteTime": "Delete Time",
+            "workspace": "Workspace"
+        }
+    }
+}

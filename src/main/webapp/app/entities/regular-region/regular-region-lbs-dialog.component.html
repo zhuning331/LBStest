@@ -1,0 +1,88 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myRegularRegionLabel" jhiTranslate="lbStestApp.regularRegion.home.createOrEditLabel">Create or edit a Regular Region</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!regularRegion.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="regularRegion.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.regularRegion.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="regularRegion.name"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.regularRegion.sides" for="field_sides">Sides</label>
+            <input type="number" class="form-control" name="sides" id="field_sides"
+                [(ngModel)]="regularRegion.sides"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.regularRegion.centerLongitude" for="field_centerLongitude">Center Longitude</label>
+            <input type="number" class="form-control" name="centerLongitude" id="field_centerLongitude"
+                [(ngModel)]="regularRegion.centerLongitude"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.regularRegion.centerLatitude" for="field_centerLatitude">Center Latitude</label>
+            <input type="number" class="form-control" name="centerLatitude" id="field_centerLatitude"
+                [(ngModel)]="regularRegion.centerLatitude"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.regularRegion.altitude" for="field_altitude">Altitude</label>
+            <input type="number" class="form-control" name="altitude" id="field_altitude"
+                [(ngModel)]="regularRegion.altitude"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.regularRegion.cornerLongitude" for="field_cornerLongitude">Corner Longitude</label>
+            <input type="number" class="form-control" name="cornerLongitude" id="field_cornerLongitude"
+                [(ngModel)]="regularRegion.cornerLongitude"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.regularRegion.cornerLatitude" for="field_cornerLatitude">Corner Latitude</label>
+            <input type="number" class="form-control" name="cornerLatitude" id="field_cornerLatitude"
+                [(ngModel)]="regularRegion.cornerLatitude"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.regularRegion.createTime" for="field_createTime">Create Time</label>
+            <div class="d-flex">
+                <input id="field_createTime" type="datetime-local" class="form-control" name="createTime" [(ngModel)]="regularRegion.createTime"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.regularRegion.updateTime" for="field_updateTime">Update Time</label>
+            <div class="d-flex">
+                <input id="field_updateTime" type="datetime-local" class="form-control" name="updateTime" [(ngModel)]="regularRegion.updateTime"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.regularRegion.deleteTime" for="field_deleteTime">Delete Time</label>
+            <div class="d-flex">
+                <input id="field_deleteTime" type="datetime-local" class="form-control" name="deleteTime" [(ngModel)]="regularRegion.deleteTime"
+                  />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.regularRegion.region" for="field_region">Region</label>
+            <select class="form-control" id="field_region" name="region" [(ngModel)]="regularRegion.regionId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="regionOption.id" *ngFor="let regionOption of regions; trackBy: trackRegionById">{{regionOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

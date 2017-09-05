@@ -1,0 +1,104 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myPOILabel" jhiTranslate="lbStestApp.pOI.home.createOrEditLabel">Create or edit a POI</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!pOI.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="pOI.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOI.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="pOI.name"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOI.longitude" for="field_longitude">Longitude</label>
+            <input type="number" class="form-control" name="longitude" id="field_longitude"
+                [(ngModel)]="pOI.longitude"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOI.latitude" for="field_latitude">Latitude</label>
+            <input type="number" class="form-control" name="latitude" id="field_latitude"
+                [(ngModel)]="pOI.latitude"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOI.altitude" for="field_altitude">Altitude</label>
+            <input type="number" class="form-control" name="altitude" id="field_altitude"
+                [(ngModel)]="pOI.altitude"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOI.bearing" for="field_bearing">Bearing</label>
+            <input type="number" class="form-control" name="bearing" id="field_bearing"
+                [(ngModel)]="pOI.bearing"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOI.icon" for="field_icon">Icon</label>
+            <div>
+                <img [src]="'data:' + pOI.iconContentType + ';base64,' + pOI.icon" style="max-height: 100px;" *ngIf="pOI.icon" alt="pOI image"/>
+                <div *ngIf="pOI.icon" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{pOI.iconContentType}}, {{byteSize(pOI.icon)}}</span>
+                    <button type="button" (click)="clearInputImage('icon', 'iconContentType', 'fileImage')" class="btn btn-default btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_icon" (change)="setFileData($event, pOI, 'icon', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+            </div>
+            <input type="hidden" class="form-control" name="icon" id="field_icon"
+                [(ngModel)]="pOI.icon"  />
+            <input type="hidden" class="form-control" name="iconContentType" id="field_iconContentType"
+                [(ngModel)]="pOI.iconContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOI.speed" for="field_speed">Speed</label>
+            <input type="number" class="form-control" name="speed" id="field_speed"
+                [(ngModel)]="pOI.speed"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOI.profile" for="field_profile">Profile</label>
+            <input type="text" class="form-control" name="profile" id="field_profile"
+                [(ngModel)]="pOI.profile"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOI.createTime" for="field_createTime">Create Time</label>
+            <div class="d-flex">
+                <input id="field_createTime" type="datetime-local" class="form-control" name="createTime" [(ngModel)]="pOI.createTime"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOI.updateTime" for="field_updateTime">Update Time</label>
+            <div class="d-flex">
+                <input id="field_updateTime" type="datetime-local" class="form-control" name="updateTime" [(ngModel)]="pOI.updateTime"
+                  />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="lbStestApp.pOI.deleteTime" for="field_deleteTime">Delete Time</label>
+            <div class="d-flex">
+                <input id="field_deleteTime" type="datetime-local" class="form-control" name="deleteTime" [(ngModel)]="pOI.deleteTime"
+                  />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="lbStestApp.pOI.types" for="field_types">Types</label>
+            <select class="form-control" id="field_types" multiple name="types" [(ngModel)]="pOI.types">
+                <option [ngValue]="getSelected(pOI.types, pOITypeOption)" *ngFor="let pOITypeOption of poitypes; trackBy: trackPOITypeById">{{pOITypeOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

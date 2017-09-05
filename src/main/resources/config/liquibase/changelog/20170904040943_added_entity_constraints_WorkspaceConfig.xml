@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity WorkspaceConfig.
+    -->
+    <changeSet id="20170904040943-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="workspace_id"
+                                 baseTableName="workspace_config"
+                                 constraintName="fk_workspace_config_workspace_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="workspace"/>
+
+    </changeSet>
+</databaseChangeLog>

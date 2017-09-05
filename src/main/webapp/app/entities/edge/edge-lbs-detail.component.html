@@ -1,0 +1,61 @@
+
+<div *ngIf="edge">
+    <h2><span jhiTranslate="lbStestApp.edge.detail.title">Edge</span> {{edge.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbStestApp.edge.order">Order</span></dt>
+        <dd>
+            <span>{{edge.order}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.edge.createTime">Create Time</span></dt>
+        <dd>
+            <span>{{edge.createTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.edge.updateTime">Update Time</span></dt>
+        <dd>
+            <span>{{edge.updateTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.edge.deleteTime">Delete Time</span></dt>
+        <dd>
+            <span>{{edge.deleteTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.edge.from">From</span></dt>
+        <dd>
+            <div *ngIf="edge.fromId">
+                <a [routerLink]="['/node-lbs', edge.fromId]">{{edge.fromId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.edge.to">To</span></dt>
+        <dd>
+            <div *ngIf="edge.toId">
+                <a [routerLink]="['/node-lbs', edge.toId]">{{edge.toId}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.edge.types">Types</span></dt>
+        <dd>
+            <span *ngFor="let types of edge.types; let last = last">
+                <a [routerLink]="['/edge-type-lbs', types?.id ]">{{types.id}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.edge.web">Web</span></dt>
+        <dd>
+            <div *ngIf="edge.webId">
+                <a [routerLink]="['/web-lbs', edge.webId]">{{edge.webId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'edge-lbs/'+ edge.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

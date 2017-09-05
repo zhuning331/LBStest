@@ -1,0 +1,27 @@
+{
+    "lbStestApp": {
+        "bindingPOI" : {
+            "home": {
+                "title": "Binding POIS",
+                "createLabel": "建立一筆新的 Binding POI",
+                "createOrEditLabel": "建立或編輯 Binding POI",
+                "search": "搜尋 Binding POI"
+            },
+            "created": "新的 Binding POI 建立成功，識別碼為 {{ param }}",
+            "updated": "識別碼為 {{ param }} 的 Binding POI 更新成功",
+            "deleted": "識別碼為 {{ param }} 的 Binding POI 刪除成功",
+            "delete": {
+                "question": "您確定要刪除 Binding POI {{ id }} 嗎?"
+            },
+            "detail": {
+                "title": "Binding POI"
+            },
+            "bindingType": "Binding Type",
+            "bindingKey": "Binding Key",
+            "createTime": "Create Time",
+            "updateTime": "Update Time",
+            "deleteTime": "Delete Time",
+            "poi": "Poi"
+        }
+    }
+}

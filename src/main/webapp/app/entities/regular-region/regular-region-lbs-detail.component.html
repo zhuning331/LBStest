@@ -1,0 +1,67 @@
+
+<div *ngIf="regularRegion">
+    <h2><span jhiTranslate="lbStestApp.regularRegion.detail.title">Regular Region</span> {{regularRegion.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="lbStestApp.regularRegion.name">Name</span></dt>
+        <dd>
+            <span>{{regularRegion.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.regularRegion.sides">Sides</span></dt>
+        <dd>
+            <span>{{regularRegion.sides}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.regularRegion.centerLongitude">Center Longitude</span></dt>
+        <dd>
+            <span>{{regularRegion.centerLongitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.regularRegion.centerLatitude">Center Latitude</span></dt>
+        <dd>
+            <span>{{regularRegion.centerLatitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.regularRegion.altitude">Altitude</span></dt>
+        <dd>
+            <span>{{regularRegion.altitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.regularRegion.cornerLongitude">Corner Longitude</span></dt>
+        <dd>
+            <span>{{regularRegion.cornerLongitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.regularRegion.cornerLatitude">Corner Latitude</span></dt>
+        <dd>
+            <span>{{regularRegion.cornerLatitude}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.regularRegion.createTime">Create Time</span></dt>
+        <dd>
+            <span>{{regularRegion.createTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.regularRegion.updateTime">Update Time</span></dt>
+        <dd>
+            <span>{{regularRegion.updateTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.regularRegion.deleteTime">Delete Time</span></dt>
+        <dd>
+            <span>{{regularRegion.deleteTime | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="lbStestApp.regularRegion.region">Region</span></dt>
+        <dd>
+            <div *ngIf="regularRegion.regionId">
+                <a [routerLink]="['/region-lbs', regularRegion.regionId]">{{regularRegion.regionId}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'regular-region-lbs/'+ regularRegion.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>
