@@ -1,8 +1,9 @@
 
-<div *ngIf="map">
+<div >
     <h2><span jhiTranslate="lbStestApp.map.detail.title">Map</span> {{map.id}}</h2>
     <hr>
-    <jhi-alert-error></jhi-alert-error>
+    <div id="map" class="map"></div>
+    <!-- <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
         <dt><span jhiTranslate="lbStestApp.map.name">Name</span></dt>
         <dd>
@@ -103,7 +104,7 @@
                 <a [routerLink]="['/region-lbs', regions?.id ]">{{regions.id}}</a>{{last ? '' : ', '}}
             </span>
         </dd>
-    </dl>
+    </dl> -->
 
     <button type="submit"
             (click)="previousState()"

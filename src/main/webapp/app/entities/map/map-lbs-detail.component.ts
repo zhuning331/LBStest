@@ -6,6 +6,9 @@ import { JhiEventManager, JhiDataUtils } from 'ng-jhipster';
 import { MapLbs } from './map-lbs.model';
 import { MapLbsService } from './map-lbs.service';
 
+import $ = require('jquery');
+import * as ol from 'openlayers';
+
 @Component({
     selector: 'jhi-map-lbs-detail',
     templateUrl: './map-lbs-detail.component.html'
@@ -29,6 +32,7 @@ export class MapLbsDetailComponent implements OnInit, OnDestroy {
             this.load(params['id']);
         });
         this.registerChangeInMaps();
+        this.olMapInit();
     }
 
     load(id) {
@@ -57,5 +61,21 @@ export class MapLbsDetailComponent implements OnInit, OnDestroy {
             'mapListModification',
             (response) => this.load(this.map.id)
         );
+    }
+
+    olMapInit() {
+        // OpenLayers test
+        const olMap = new ol.Map({
+            target: 'map',
+            layers: [
+              new ol.layer.Tile({
+                source: new ol.source.OSM()
+              })
+            ],
+            view: new ol.View({
+              center: ol.proj.fromLonLat([37.41, 8.82]),
+              zoom: 4
+            })
+          });
     }
 }
